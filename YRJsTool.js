@@ -13,15 +13,14 @@ function clientSize() {
 }
 
 
-/**获取当前鼠标的 pageX 和 pagaY*/
+/**获取当前鼠标 在网页中的位置, 包含被卷去的部分*/
 function touchPoint(event) {
     // pageX pageY 指的是鼠标 距离页面左边和上边的距离, 包含卷去的部分
     return {"x" : (event.pageX || pageOffset().x + event.clientX), "y": (event.pageY || pageOffset().y + event.clientY) };
 }
 
 /**
- * 获取当前窗口的偏移量
- * @returns {{top: (Number|number), left: (Number|number)}}
+ * 获取当前窗口的偏移量, 即 网页被卷去的部分
  */
 function pageOffset() {
     return {x: (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop),
@@ -33,6 +32,7 @@ function pageOffset() {
 
 
 
+/** 水平 移动标签ele 到指定的位置 target, 完成后回调函数 callback */
 function animateMove_H_callback(ele, target, callback) {
     if(target == ele.offsetLeft){
         if(callback != null){
@@ -62,7 +62,7 @@ function animateMove_H_callback(ele, target, callback) {
     },25);
 }
 
-
+/** 垂直 移动标签ele 到指定的位置 target, 完成后回调函数 callback */
 function animateMove_V_callback(ele, target,callback) {
 
     if(target == ele.offsetLeft){
